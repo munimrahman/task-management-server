@@ -19,8 +19,8 @@ const deleteOne = async (id) => {
   return res;
 };
 
-const getAll = async () => {
-  const res = Task.find({});
+const getAll = async (query) => {
+  const res = Task.find(query);
   return res;
 };
 

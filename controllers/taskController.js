@@ -47,7 +47,11 @@ const deleteTask = async (req, res, next) => {
 
 const getAllTasks = async (req, res) => {
   try {
-    const tasks = await getAll();
+    const { user } = req.query;
+    const query = {};
+    if (user) query.assignTo = user;
+
+    const tasks = await getAll(query);
     res.status(200).json({
       message: "success",
       tasks,
