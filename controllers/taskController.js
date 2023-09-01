@@ -1,4 +1,9 @@
-const { createOne, getAll } = require("../services/taskService");
+const {
+  createOne,
+  updateOne,
+  deleteOne,
+  getAll,
+} = require("../services/taskService");
 
 const createTask = async (req, res, next) => {
   try {
@@ -13,37 +18,27 @@ const createTask = async (req, res, next) => {
   }
 };
 
-const addTeamMember = async (req, res, next) => {
+const updateTaskById = async (req, res) => {
   try {
     const { id } = req.params;
-
-    const team = await addMember(id, req.body);
-
-    // user not found error
-    if (!team) {
-      res.status(401).json({
-        success: "fail",
-        message: "User Not Found",
-      });
-    }
+    const task = await updateOne(req.body, id);
 
     res.status(200).json({
       message: "success",
-      team,
+      task,
     });
   } catch (error) {
     next(error);
   }
 };
 
-const updateUserById = async (req, res) => {
+const deleteTask = async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const user = await updateOne(req.body, id);
+    const task = await deleteOne(req.params.id);
 
     res.status(200).json({
-      message: "success",
-      user,
+      message: "Successfully Deleted",
+      deletedTask: task,
     });
   } catch (error) {
     next(error);
@@ -62,4 +57,4 @@ const getAllTasks = async (req, res) => {
   }
 };
 
-module.exports = { createTask, getAllTasks };
+module.exports = { createTask, updateTaskById, deleteTask, getAllTasks };

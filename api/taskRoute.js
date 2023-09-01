@@ -7,6 +7,9 @@ router
   .get(taskController.getAllTasks)
   .post(taskController.createTask);
 
-// router.route("/:id").put(taskController.addTeamMember);
+router
+  .route("/:id")
+  .put(taskController.updateTaskById)
+  .delete(taskController.deleteTask);
 
 module.exports = router;

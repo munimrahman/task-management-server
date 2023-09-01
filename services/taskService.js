@@ -1,15 +1,12 @@
 const Task = require("../model/Task");
-const Team = require("../model/Team");
-const User = require("../model/User");
 
 const createOne = async (data) => {
   const task = await Task.create(data);
-
   return task;
 };
 
 const updateOne = async (data, id) => {
-  const updatedRes = await Team.findByIdAndUpdate(id, data, {
+  const updatedRes = await Task.findByIdAndUpdate(id, data, {
     runValidators: true,
     new: true,
   });
@@ -17,9 +14,14 @@ const updateOne = async (data, id) => {
   return updatedRes;
 };
 
+const deleteOne = async (id) => {
+  const res = Task.findByIdAndDelete(id);
+  return res;
+};
+
 const getAll = async () => {
   const res = Task.find({});
   return res;
 };
 
-module.exports = { createOne, getAll };
+module.exports = { createOne, updateOne, deleteOne, getAll };
