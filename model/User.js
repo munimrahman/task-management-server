@@ -37,6 +37,17 @@ const userSchema = new Schema(
       required: [true, "Password is required"],
       minLength: [4, "Password must be at least 4 characters."],
     },
+    myTeams: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    notifications: [
+      {
+        type: String,
+      },
+    ],
   },
   {
     timestamps: true,
