@@ -36,16 +36,6 @@ const addMember = async (teamId, data) => {
   return res;
 };
 
-const getOneById = async (id) => {
-  const res = Team.findById(id);
-  return res;
-};
-
-const getOneByEmail = async (email) => {
-  const res = Team.findOne({ email });
-  return res;
-};
-
 const getAll = async () => {
   const res = Team.find({});
   return res;

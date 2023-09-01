@@ -10,9 +10,11 @@ const projectSchema = new Schema(
     },
     description: {
       type: String,
+      required: true,
     },
     deadline: {
       type: Date,
+      required: true,
     },
     tasks: [
       {
@@ -20,6 +22,10 @@ const projectSchema = new Schema(
         ref: "Task",
       },
     ],
+    assignedTeam: {
+      type: Schema.Types.ObjectId,
+      ref: "Team",
+    },
   },
   {
     timestamps: true,

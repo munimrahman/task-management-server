@@ -36,34 +36,6 @@ const addTeamMember = async (req, res, next) => {
   }
 };
 
-const getUserById = async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const user = await getOneById(id);
-
-    res.status(200).json({
-      message: "success",
-      user,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
-const getUserByEmail = async (req, res) => {
-  try {
-    const email = req.query.email;
-    const user = await getOneByEmail(email);
-
-    res.status(200).json({
-      message: "success",
-      user,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
-
 const updateUserById = async (req, res) => {
   try {
     const id = req.params.id;
@@ -81,7 +53,6 @@ const updateUserById = async (req, res) => {
 const getAllTeams = async (req, res) => {
   try {
     const teams = await getAll();
-    console.log("object");
     res.status(200).json({
       message: "success",
       teams,
