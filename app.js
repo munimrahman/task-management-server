@@ -15,18 +15,7 @@ app.get("/", (req, res) => {
   res.send("Hello From Task Management Server");
 });
 
-app.use(
-  "/api/v1",
-  (req, res, next) => {
-    // let i = 0;
-    // while (i < 999999) {
-    //   console.log(i);
-    //   i++;
-    // }
-    next();
-  },
-  router
-);
+app.use("/api/v1", router);
 
 app.all("*", notFoundHandler);
 app.use(globalErrorHandler);
