@@ -7,6 +7,9 @@ router
   .get(teamController.getAllTeams)
   .post(teamController.createTeam);
 
-router.route("/:id").put(teamController.addTeamMember);
+router
+  .route("/:id")
+  .get(teamController.getTeamById)
+  .put(teamController.addTeamMember);
 
 module.exports = router;

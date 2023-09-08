@@ -9,6 +9,7 @@ router
 
 router
   .route("/:id")
+  .get(taskController.getTaskById)
   .put(taskController.updateTaskById)
   .delete(taskController.deleteTask);
 

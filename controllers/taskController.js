@@ -1,5 +1,6 @@
 const {
   createOne,
+  getOneById,
   updateOne,
   deleteOne,
   getAll,
@@ -18,7 +19,21 @@ const createTask = async (req, res, next) => {
   }
 };
 
-const updateTaskById = async (req, res) => {
+const getTaskById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const task = await getOneById(id);
+
+    res.status(200).json({
+      message: "success",
+      task,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateTaskById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const task = await updateOne(req.body, id);
@@ -45,7 +60,7 @@ const deleteTask = async (req, res, next) => {
   }
 };
 
-const getAllTasks = async (req, res) => {
+const getAllTasks = async (req, res, next) => {
   try {
     const { user } = req.query;
     const query = {};
@@ -61,4 +76,10 @@ const getAllTasks = async (req, res) => {
   }
 };
 
-module.exports = { createTask, updateTaskById, deleteTask, getAllTasks };
+module.exports = {
+  createTask,
+  getTaskById,
+  updateTaskById,
+  deleteTask,
+  getAllTasks,
+};

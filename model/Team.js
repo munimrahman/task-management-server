@@ -8,6 +8,9 @@ const teamSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+    },
     teamMembers: [
       {
         type: Schema.Types.ObjectId,

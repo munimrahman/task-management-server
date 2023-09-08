@@ -20,7 +20,7 @@ const createOne = async (data) => {
 };
 
 const getAll = async () => {
-  const res = Project.find({});
+  const res = Project.find({}).populate("assignedTeam");
   return res;
 };
 

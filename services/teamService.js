@@ -11,6 +11,11 @@ const createOne = async (data) => {
   return team;
 };
 
+const getOneById = async (id) => {
+  const res = await Team.findById(id);
+  return res;
+};
+
 const updateOne = async (data, id) => {
   const updatedRes = await Team.findByIdAndUpdate(id, data, {
     runValidators: true,
@@ -37,12 +42,16 @@ const addMember = async (teamId, data) => {
 };
 
 const getAll = async () => {
-  const res = Team.find({});
+  const res = Team.find({}).populate(
+    "teamMembers",
+    "name profilePhoto designation email"
+  );
   return res;
 };
 
 module.exports = {
   createOne,
+  getOneById,
   updateOne,
   addMember,
   getAll,

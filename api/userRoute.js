@@ -4,6 +4,8 @@ const router = express.Router();
 
 router.route("/users").get(userController.getAllUsers);
 
+router.route("/user-by-email").get(userController.getUserByEmail);
+
 router.route("/register").post(userController.createUser);
 
 router.route("/log-in").post(userController.logIn);

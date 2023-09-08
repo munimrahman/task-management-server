@@ -1,8 +1,27 @@
-const { createOne, addMember, getAll } = require("../services/teamService");
+const {
+  createOne,
+  getOneById,
+  addMember,
+  getAll,
+} = require("../services/teamService");
 
 const createTeam = async (req, res, next) => {
   try {
     const team = await createOne(req.body);
+
+    res.status(200).json({
+      message: "success",
+      team,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getTeamById = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const team = await getOneById(id);
 
     res.status(200).json({
       message: "success",
@@ -62,4 +81,4 @@ const getAllTeams = async (req, res) => {
   }
 };
 
-module.exports = { createTeam, addTeamMember, getAllTeams };
+module.exports = { createTeam, getTeamById, addTeamMember, getAllTeams };

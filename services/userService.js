@@ -6,12 +6,12 @@ const createOne = async (userData) => {
 };
 
 const getOneById = async (id) => {
-  const res = User.findById(id);
+  const res = await User.findById(id);
   return res;
 };
 
 const getOneByEmail = async (email) => {
-  const res = User.findOne({ email });
+  const res = await User.findOne({ email });
   return res;
 };
 

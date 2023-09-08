@@ -5,6 +5,11 @@ const createOne = async (data) => {
   return task;
 };
 
+const getOneById = async (id) => {
+  const res = await Task.findById(id);
+  return res;
+};
+
 const updateOne = async (data, id) => {
   const updatedRes = await Task.findByIdAndUpdate(id, data, {
     runValidators: true,
@@ -20,8 +25,10 @@ const deleteOne = async (id) => {
 };
 
 const getAll = async (query) => {
-  const res = Task.find(query);
+  const res = Task.find(query)
+    .populate("assignTo", "name")
+    .populate("project", "title");
   return res;
 };
 
-module.exports = { createOne, updateOne, deleteOne, getAll };
+module.exports = { createOne, getOneById, updateOne, deleteOne, getAll };
